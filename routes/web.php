@@ -15,8 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('zz-unused.coming-soon');
+})->name('landing');
+
+Route::get('/r', function () {
+    return view('zz-unused.all-routes');
+})->name('routes');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

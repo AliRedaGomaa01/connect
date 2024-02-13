@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer components {
+    .it-ce {
+        @apply justify-items-center items-center
+    }
+}
