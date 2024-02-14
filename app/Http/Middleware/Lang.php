@@ -17,8 +17,11 @@ class Lang
     {
         if( isset($request->locale) && in_array($request->locale, ['ar','en'])) {
             app()->setLocale($request->locale);
-            session()->flash('success' , __('language changed successfully.'));
-        } 
+            session()->put('locale', $request->locale);
+        } else {
+            $locale = session('locale') ?? app()->currentLocale();
+            app()->setLocale($locale);
+        }
         return $next($request);
     }
 }

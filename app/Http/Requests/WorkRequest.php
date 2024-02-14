@@ -11,7 +11,7 @@ class WorkRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,12 @@ class WorkRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [];
+        $rules = [
+            'category' => ['required','string','max:255'],
+            'title' => ['required','string','max:255'],
+            'description' => ['required','string','max:2047'],
+            'url' => ['required','string','max:255'],
+        ];
         return $rules;
     }
 }

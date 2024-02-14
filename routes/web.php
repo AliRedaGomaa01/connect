@@ -39,9 +39,9 @@ Route::middleware('lang')->group(function () {
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 
-    Route::middleware('auth')->prefix('portfolio')->name('portfolio.')->group(function () {
-            Route::resource('work', WorkController::class);
-            Route::resource('user', UserController::class)->only(['index','show']);
+    Route::middleware('auth')->prefix('portfolio')->group(function () {
+            Route::resource('works', WorkController::class);
+            Route::resource('users', UserController::class)->only(['index','show']);
     });
 });
     

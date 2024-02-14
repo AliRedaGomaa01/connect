@@ -15,16 +15,18 @@
     ];
     $nav = app()->isLocale('ar') ?  $navAr : $navEn;
     # others 
+    $url = request()->url();
+    $hasQuery = count(explode('?', $url)) > 1;
     $routes = [
         'dashboard' => route('dashboard') ,
         'profile' => route('profile.edit') ,
         'logout' => route('logout') ,
-        'lang' => app()->isLocale('ar') ? route(request()->route()->getName() , ['locale' => 'en'] )  : route(request()->route()->getName() , ['locale' => 'ar'] )  ,
+        'lang' => app()->isLocale('ar') ? ( $hasQuery ? $url.'&locale=en' : $url.'?locale=en') : ( $hasQuery ? $url.'&locale=ar' : $url.'?locale=ar' ),
     ] ;
 @endphp
 <nav>
-    <div class="bg-white items-center p-10 gap-5  myBottomShadow relative z-10">
-        <ul class="grid grid-cols-1 vsm:grid-cols-4 it-ce">
+    <div class="bg-white items-center p-10   myBottomShadow relative z-10">
+        <ul class="grid grid-cols-1 vsm:grid-cols-4 gap-5 it-ce text-main">
             @foreach ($nav as $key => $value)
                 @if ($key == 'logout')
                     <form action="{{$routes[$key]}}" method="post">

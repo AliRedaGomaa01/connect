@@ -32,11 +32,13 @@
         @include('layouts.partials.header')
 
         <!-- Page Content -->
-        <main>
+        <main class="grid it-ce my-[5rem]">
             {{ $slot }}
         </main>
         </div>
-        <div id='test'class="absolute bottom-0">
+
+        <div class="p-10"></div>
+        <div id='test'class="absolute bottom-0 w-[100%] bg-black">
             @include('layouts.partials.footer')
         </div>
         @yield('scripts')

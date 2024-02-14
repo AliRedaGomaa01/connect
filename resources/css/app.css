@@ -3,12 +3,20 @@
 @tailwind utilities;
 
 
+@layer base {
+    h3 ,label {
+        @apply text-xl font-bold text-main
+    }
+    input[name] , textarea , select {
+        @apply border-2 border-main outline-main rounded-lg
+    }
+}
 @layer components {
     .it-ce {
         @apply justify-items-center items-center
     }
     .myShadow {
-        @apply shadow-[3px_3px_6px_6px_rgb(0,0,0,0.3),-3px_-3px_6px_6px_rgb(0,0,0,0.3)]
+        @apply shadow-[3px_3px_6px_6px_rgb(0,0,0,0.1),-3px_-3px_6px_6px_rgb(0,0,0,0.1)]
     }
     .myBottomShadow {
         @apply shadow-[0px_3px_6px_6px_rgb(0,0,0,0.3)]

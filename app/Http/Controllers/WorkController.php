@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Work;
 use App\Http\Requests\WorkRequest;
+use Illuminate\Support\Facades\Route;
 
 class WorkController extends Controller
 {
@@ -12,7 +13,8 @@ class WorkController extends Controller
      */
     public function index()
     {
-        $works = Work::simplePaginate(2)->toArray();
+        $perPage = 15;
+        $works = Work::with('user')->paginate($perPage)->toArray();
         return view('portfolio.works.index', compact('works'));
     }
 
@@ -21,7 +23,7 @@ class WorkController extends Controller
      */
     public function create()
     {
-        //
+        return view('portfolio.works.create');
     }
 
     /**
@@ -29,7 +31,9 @@ class WorkController extends Controller
      */
     public function store(WorkRequest $request)
     {
-        //
+        $validated = $request->validated();
+        auth()->user()->works()->create($validated);
+        return redirect()->route('works.index')->with('success', __('Stored Successfully'));
     }
 
     /**
@@ -37,7 +41,8 @@ class WorkController extends Controller
      */
     public function show(Work $work)
     {
-        //
+        $work = $work->load('user')->toArray();
+        return view('portfolio.works.show', compact('work'));
     }
 
     /**
@@ -45,7 +50,7 @@ class WorkController extends Controller
      */
     public function edit(Work $work)
     {
-        //
+        return view('portfolio.works.edit', compact('work'));
     }
 
     /**
@@ -53,7 +58,9 @@ class WorkController extends Controller
      */
     public function update(WorkRequest $request, Work $work)
     {
-        //
+        $validated = $request->validated();
+        $work->update($validated);
+        return redirect()->route('works.index')->with('success', __('Updated Successfully'));
     }
 
     /**
@@ -61,6 +68,7 @@ class WorkController extends Controller
      */
     public function destroy(Work $work)
     {
-        //
+        $work->delete();
+        return redirect()->route('works.index')->with('success', __('Deleted Successfully'));
     }
 }

@@ -10,7 +10,7 @@
     $footer = app()->isLocale('ar') ?  $footerAr : $footerEn;
 @endphp
 <footer>
-    <div class="bg-main px-10 py-5 w-[100vw] grid it-ce myTopShadow">
-        <h1 class="text-white text-xl"> {{ $footer['footer'] }} </h1>    
+    <div class="bg-main px-10 py-5 w-full grid it-ce myTopShadow">
+        <h1 class="text-white text-xl text-center"> {{ $footer['footer'] }} </h1>    
     </div>
 </footer>

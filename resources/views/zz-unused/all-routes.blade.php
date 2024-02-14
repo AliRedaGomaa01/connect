@@ -14,7 +14,7 @@
         ['route' => route('login'), 'name' => 'login' , 'color' => 'bg-blue-600'],
         ['route' => route('register'), 'name' => 'register' , 'color' => 'bg-blue-600'],
         ['route' => route('dashboard'), 'name' => 'dashboard' , 'color' => 'bg-blue-600'],
-        ['route' => route('portfolio.work.index'), 'name' => 'works' , 'color' => 'bg-red-600'],
+        ['route' => route('works.index'), 'name' => 'works' , 'color' => 'bg-red-600'],
 ];
 @endphp
 <body>
