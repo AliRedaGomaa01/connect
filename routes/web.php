@@ -21,7 +21,7 @@ Route::middleware('lang')->group(function () {
 
     require __DIR__.'/auth.php';
 
-    Route::get('/', function ($locale) {
+    Route::get('/', function () {
         return view('zz-unused.coming-soon');
     })->name('landing');
 
