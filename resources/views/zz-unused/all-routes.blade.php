@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ٌRoutes</title>
+    <title>All Routes</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 @php
@@ -13,6 +13,8 @@
         ['route' => route('routes'), 'name' => 'routes' , 'color' => 'bg-black'],
         ['route' => route('login'), 'name' => 'login' , 'color' => 'bg-blue-600'],
         ['route' => route('register'), 'name' => 'register' , 'color' => 'bg-blue-600'],
+        ['route' => route('dashboard'), 'name' => 'dashboard' , 'color' => 'bg-blue-600'],
+        ['route' => route('portfolio.work.index'), 'name' => 'works' , 'color' => 'bg-red-600'],
 ];
 @endphp
 <body>

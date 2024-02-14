@@ -42,4 +42,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    # Relations 
+
+    public function works()
+    {
+        return $this->hasMany(Work::class,'user_id','id');
+    }
+    
 }

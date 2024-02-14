@@ -15,7 +15,10 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                main: "#0000AA",
+                'main': "#0000cc",
+            },
+            screens: {
+                'vsm': "400px",
             },
         },
     },

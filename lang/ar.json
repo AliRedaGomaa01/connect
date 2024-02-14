@@ -70,5 +70,9 @@
     "Whoops!": "عذراً!",
     "You are receiving this email because we received a password reset request for your account.": "لقد استلمت هذا الإيميل لأننا استقبلنا طلباً لاستعادة كلمة مرور حسابك.",
     "You're logged in!": "لقد قمت بتسجيل الدخول!",
-    "Your email address is unverified.": "لم يتم التحقق من عنوان بريدك الإلكتروني."
+    "Your email address is unverified.": "لم يتم التحقق من عنوان بريدك الإلكتروني.",
+    "language changed successfully.":"تم تغيير اللغة بنجاح.",
+    "Connect":"كونكت",
+    "":"",
+    "":""
 }

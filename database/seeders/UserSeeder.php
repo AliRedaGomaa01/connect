@@ -12,23 +12,16 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        $users = [];
+        foreach (['a', 'b', 'c', 'd'] as $key => $val) {
+            $users[] = [
+            'name' => "$val",
+            'email' => "$val@$val.$val",
+            'password' => bcrypt("$val")
+            ];
+        }
         \App\Models\User::insert(
-            [
-            'name' => 'a',
-            'email' => 'a@a.a',
-            ],
-            [
-            'name' => 'b',
-            'email' => 'b@b.b',
-            ],
-            [
-            'name' => 'c',
-            'email' => 'c@c.c',
-            ],
-            [
-            'name' => 'd',
-            'email' => 'd@d.d',
-            ],
+            $users
         );
     }
 }
