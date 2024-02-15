@@ -29,12 +29,18 @@
         <ul class="grid grid-cols-1 vsm:grid-cols-4 gap-5 it-ce text-main">
             @foreach ($nav as $key => $value)
                 @if ($key == 'logout')
-                    <form action="{{$routes[$key]}}" method="post">
+                    <form action="{{$routes[$key]}}" method="post" >
                         @csrf
-                        <li><button type="submit">{{$value}}</button></li>
+                        <li >
+                            <button type="submit"  class="{{ $routes[$key] === url()->current() ? 'active' : '' }} ">
+                                <a class="hover:active "> {{$value}} </a>
+                            </button>
+                        </li>
                     </form>
                 @else 
-                    <li><a href="{{$routes[$key]}}">{{$value}}</a></li>
+                    <li>
+                        <a href="{{$routes[$key]}}" class="{{ $routes[$key] === url()->current() ? 'active' : '' }} hover:active">{{$value}}</a>
+                    </li>
                 @endif
             @endforeach
         </ul>

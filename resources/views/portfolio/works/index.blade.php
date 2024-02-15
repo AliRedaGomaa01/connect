@@ -17,7 +17,9 @@
 @endphp
 <x-app-layout>
     <div class="grid it-ce m-10 p-10 vsm:w-[300px] sm:w-[600px] md:w-[800px]">
-        
+        <a href="{{route('works.create')}}" class="myShadow rounded-xl m-5 p-5 w-[90%] grid gap-5">
+            <x-primary-button class="justify-self-center">{{__('Add New')}}</x-primary-button>
+        </a>
         @foreach ($works['data'] as $work)
             <div class="myShadow rounded-xl m-5 p-5 w-[90%] grid gap-5">
                 <h3>{{__('Category')}}</h3>
@@ -46,9 +48,6 @@
                 <x-primary-button class="{{ $nextBtnCond ? 'hidden' : '' }}" > {{__('Next')}} </x-primary-button>
             </a>
         </div>
-        <a href="{{route('works.create')}}" class="">
-            <x-primary-button class="">{{__('Add New')}}</x-primary-button>
-        </a>
     </div>
 
 </x-app-layout>

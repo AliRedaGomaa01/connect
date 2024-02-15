@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\WorkTypesEnum;
 use App\Models\Work;
 use App\Http\Requests\WorkRequest;
 use Illuminate\Support\Facades\Route;
@@ -14,7 +15,7 @@ class WorkController extends Controller
     public function index()
     {
         $perPage = 15;
-        $works = Work::with('user')->paginate($perPage)->toArray();
+        $works = collect(Work::with('user')->paginate($perPage))->toArray();
         return view('portfolio.works.index', compact('works'));
     }
 
@@ -23,7 +24,8 @@ class WorkController extends Controller
      */
     public function create()
     {
-        return view('portfolio.works.create');
+        $workTypes = WorkTypesEnum::toArray(); 
+        return view('portfolio.works.create',compact('workTypes'));
     }
 
     /**
@@ -50,7 +52,8 @@ class WorkController extends Controller
      */
     public function edit(Work $work)
     {
-        return view('portfolio.works.edit', compact('work'));
+        $workTypes = WorkTypesEnum::toArray(); 
+        return view('portfolio.works.edit', compact('work','workTypes'));
     }
 
     /**

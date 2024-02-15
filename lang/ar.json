@@ -250,5 +250,10 @@
     "Updated Successfully": "تم التحديث بنجاح",
     "Deleted Successfully": "تم التحديث بنجاح",
     "Are you sure?": "هل أنت متأكد؟",
+    "Blog": "مدونة",
+    "Book": "كتاب",
+    "Article": "مقالة",
+    "Course": "دورة تدريبية",
+    "Other": "أخرى",
     "Your email address is unverified.": "لم يتم التحقق من عنوان بريدك الإلكتروني."
 }

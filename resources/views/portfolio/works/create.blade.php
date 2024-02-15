@@ -5,11 +5,22 @@
             @csrf
             <h3 class="text-center m-10">{{__('Add New')}}</h3>
             <div class="grid grid-cols-1 gap-5">
-                <label for="workCategoryInput">{{__('Category')}}</label>
-                <input type="text" id="workCategoryInput" name="category" autocomplete="workCategoryInput" placeholder="{{__('Category')}}">
-                @error('category')
+                <label for="workTypeInput">{{__('Type')}}</label>
+                <select name="type" id="workTypeSelect" onchange="toggleCategoryFn()">
+                    @foreach ($workTypes as $key => $value)
+                        <option value="{{$key}}"> {{$value}}</option>
+                    @endforeach
+                </select>
+                @error('type')
                     <div class="text-red-600">{{$message}}</div>
                 @enderror
+                <div class="grid grid-cols-1 gap-5" id="toggleCategorySelect">
+                    <label for="workCategoryInput">{{__('Category')}}</label>
+                    <input type="text" id="workCategoryInput" name="category" autocomplete="workCategoryInput" placeholder="{{__('Category')}}" value="{{ old('category') }}">
+                    @error('category')
+                        <div class="text-red-600">{{$message}}</div>
+                    @enderror
+                </div>
                 <label for="workTitleInput">{{__('Title')}}</label>
                 <input type="text" id="workTitleInput" name="title" autocomplete="workTitleInput" placeholder="{{__('Title')}}">
                 @error('title')
@@ -29,5 +40,18 @@
             </div>
         </form>
     </div>
+    @section('scripts')
+        <script>
+            var toggleCategoryFn = function(){
+                if($('#workTypeSelect').val() === 'Other'){
+                    $('#toggleCategorySelect').show();
+                } else {
+                    $('#toggleCategorySelect').hide();
+                    $('#workCategoryInput').val($('#workTypeSelect').val());
+                }
+            }
+            toggleCategoryFn()
+        </script>
+    @endsection
 
 </x-app-layout>
