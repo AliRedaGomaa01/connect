@@ -25,7 +25,7 @@ class WorkRequest extends FormRequest
             'category' => ['required','string','max:255'],
             'title' => ['required','string','max:255'],
             'description' => ['required','string','max:2047'],
-            'url' => ['required','string','max:255'],
+            'url' => ['required','string', 'url:http,https' ,'max:255'],
         ];
         return $rules;
     }

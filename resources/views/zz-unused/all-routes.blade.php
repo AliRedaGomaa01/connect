@@ -9,12 +9,14 @@
 </head>
 @php
     $routes = [
+        ['route' => route('test'), 'name' => 'test' , 'color' => 'bg-red-600'],
         ['route' => route('landing'), 'name' => 'landing' , 'color' => 'bg-black'],
         ['route' => route('routes'), 'name' => 'routes' , 'color' => 'bg-black'],
         ['route' => route('login'), 'name' => 'login' , 'color' => 'bg-blue-600'],
         ['route' => route('register'), 'name' => 'register' , 'color' => 'bg-blue-600'],
         ['route' => route('dashboard'), 'name' => 'dashboard' , 'color' => 'bg-blue-600'],
         ['route' => route('works.index'), 'name' => 'works' , 'color' => 'bg-red-600'],
+        ['route' => route('users.index'), 'name' => 'users' , 'color' => 'bg-red-600'],
 ];
 @endphp
 <body>

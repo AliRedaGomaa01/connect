@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'bio',
+        'cv_link',
     ];
 
     /**
@@ -49,5 +51,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Work::class,'user_id','id');
     }
+    public function images()
+    {
+        return $this->hasMany(Image::class,'user_id','id');
+    }
+
+
     
 }

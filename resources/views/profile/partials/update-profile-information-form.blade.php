@@ -24,6 +24,18 @@
         </div>
 
         <div>
+            <x-input-label for="bio" :value="__('Bio')" />
+            <textarea id="bio" name="bio" type="text" class="mt-1 block w-full"   autocomplete="bio" cols="30" rows="10"> {{old('bio', $user->bio)}} </textarea>
+            <x-input-error class="mt-2" :messages="$errors->get('bio')" />
+        </div>
+
+        <div>
+            <x-input-label for="cv_link" :value="__('CV Link')" />
+            <x-text-input id="cv_link" name="cv_link" type="text" class="mt-1 block w-full" :value="old('cv_link', $user->cv_link)" autocomplete="cv_link" />
+            <x-input-error class="mt-2" :messages="$errors->get('cv_link')" />
+        </div>
+
+        <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />

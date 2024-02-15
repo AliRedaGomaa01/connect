@@ -15,7 +15,7 @@ class WorkController extends Controller
     public function index()
     {
         $perPage = 15;
-        $works = collect(Work::with('user')->paginate($perPage))->toArray();
+        $works = collect(Work::orderBy('id', 'desc')->paginate($perPage))->toArray();
         return view('portfolio.works.index', compact('works'));
     }
 
@@ -44,7 +44,7 @@ class WorkController extends Controller
     public function show(Work $work)
     {
         $work = $work->load('user')->toArray();
-        return view('portfolio.works.show', compact('work'));
+        return view('portfolio.works.show', compact('work'));   
     }
 
     /**

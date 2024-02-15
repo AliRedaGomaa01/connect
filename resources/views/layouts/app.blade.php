@@ -32,7 +32,7 @@
         @include('layouts.partials.header')
 
         <!-- Page Content -->
-        <main class="grid it-ce my-[5rem]">
+        <main class="grid it-ce my-[5rem] min-h-[60vh]">
             {{ $slot }}
         </main>
         </div>

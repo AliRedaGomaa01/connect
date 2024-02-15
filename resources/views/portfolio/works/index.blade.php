@@ -7,13 +7,14 @@
     ];
     $indexAr = [
         'preview work' => 'قم بالنقر لزيارة رابط مطالعة العمل' ,
-        'preview user' => 'ثم بالنقر لزيارة رابط  الملف الشخصي للمالك' ,
+        'preview user' => 'قم بالنقر لزيارة رابط  الملف الشخصي للمالك' ,
     ];
     $index = app()->isLocale('ar') ?  $indexAr : $indexEn;
     # others
     $contentClasses = "p-10";
     $previousBtnCond =  $works['prev_page_url'] != true ;
     $nextBtnCond = $works['next_page_url'] != true ;
+    $allBtnsCond = $works['last_page'] === 1 ;
 @endphp
 <x-app-layout>
     <div class="grid it-ce m-10 p-10 vsm:w-[300px] sm:w-[600px] md:w-[800px]">
@@ -39,7 +40,7 @@
         @endforeach
 
         {{-- buttons --}}
-        <div class="grid grid-cols-3 it-ce w-full my-10">
+        <div class="grid grid-cols-3 it-ce w-full my-10 {{ $allBtnsCond ? 'hidden' : '' }}">
             <a href="{{$works['prev_page_url']}}" class="">
                 <x-primary-button class="{{ $previousBtnCond ? 'hidden' : '' }}" > {{__('Previous')}} </x-primary-button>
             </a>

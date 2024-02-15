@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            # editing migrations
+            // we added cv_link and bio and role to users in migration add_cv_link_and_bio_and_role_to_users
         });
     }
 

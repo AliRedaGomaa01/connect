@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkController;
@@ -20,6 +21,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('lang')->group(function () {
 
     require __DIR__.'/auth.php';
+    // Testing
+    Route::get('/t', function () {
+
+    })->name('test');
 
     Route::get('/', function () {
         return view('zz-unused.coming-soon');
@@ -40,8 +45,20 @@ Route::middleware('lang')->group(function () {
     });
 
     Route::middleware('auth')->prefix('portfolio')->group(function () {
-            Route::resource('works', WorkController::class);
-            Route::resource('users', UserController::class)->only(['index','show']);
+        # works
+        // Route::controller(WorkController::class)->group(function () {
+        //     Route::get('users/{user}/works', 'userWorks')->name('users.works');
+        // });
+        Route::resource('works', WorkController::class);
+        # images
+        // Route::controller(ImageController::class)->group(function () {});
+        Route::resource('images', ImageController::class)->only('create','store','destroy');
+        # users
+        Route::controller(UserController::class)->group(function () {
+            Route::get('users/search', 'search')->name('users.search');
+            Route::post('users/search-result', 'searchResult')->name('users.search.result');
+        });
+        Route::resource('users', UserController::class);
     });
 });
     
