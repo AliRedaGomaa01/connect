@@ -37,19 +37,35 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index( $id = 'notset' , ?string $status = 'notset' )
     {
         $perPage = 15;
-        $users = collect(User::paginate($perPage))->toArray();
+        $ids = User::pluck('id')->toArray();
+        if ($id == 'notset' && !in_array($id, $ids)) {
+            $id = auth()->id();
+        }  
+        $user = User::find($id);
+        if ($status == 'following') {
+            $users = $user->following()?->paginate($perPage)?->toArray();
+        } else if ($status == 'followed') {
+            $users = $user->followedBy()?->paginate($perPage)?->toArray();
+        } else {
+            $users = User::paginate($perPage)?->toArray();
+        }
         return view('portfolio.users.index', compact('users'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(?string $id='notset')
     {
-        //
+        if ($id=='notset'){
+            $id = auth()->id();
+        }
+        $user = User::find($id);
+        $followStatus = auth()->user()->followStatus($user->id);
+        return view('portfolio.users.show', compact('user','followStatus'));
     }
 
     /**

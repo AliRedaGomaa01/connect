@@ -4,10 +4,14 @@
     $indexEn = [
         'preview work' =>  'click to visit url of previewing the work',
         'preview user' => 'click to visit url of previewing the owner profile' ,
+        'no works' => 'There are no works to show.' 
+
     ];
     $indexAr = [
         'preview work' => 'قم بالنقر لزيارة رابط مطالعة العمل' ,
         'preview user' => 'قم بالنقر لزيارة رابط  الملف الشخصي للمالك' ,
+        'no works' => 'لا توجد أعمال لعرضها.' 
+
     ];
     $index = app()->isLocale('ar') ?  $indexAr : $indexEn;
     # others
@@ -17,10 +21,18 @@
     $allBtnsCond = $works['last_page'] === 1 ;
 @endphp
 <x-app-layout>
+    @slot('nav2')
+        <x-user-nav :user="$user"></x-user-nav>
+    @endslot
     <div class="grid it-ce m-10 p-10 vsm:w-[300px] sm:w-[600px] md:w-[800px]">
-        <a href="{{route('works.create')}}" class="myShadow rounded-xl m-5 p-5 w-[90%] grid gap-5">
-            <x-primary-button class="justify-self-center">{{__('Add New')}}</x-primary-button>
-        </a>
+        @if (isset($user) && $user->id == auth()->id() )
+            <a href="{{route('works.create')}}" class="myShadow rounded-xl m-5 p-5 w-[90%] grid gap-5">
+                <x-primary-button class="justify-self-center">{{__('Add New')}}</x-primary-button>
+            </a>
+        @endif
+        @if(empty($works['data']))
+            <p class="myShadow rounded-xl m-5 p-5 w-[90%] grid gap-5 text-center">{{$index['no works']}}</p>
+        @endif
         @foreach ($works['data'] as $work)
             <div class="myShadow rounded-xl m-5 p-5 w-[90%] grid gap-5">
                 <h3>{{__('Category')}}</h3>

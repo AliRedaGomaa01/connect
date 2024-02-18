@@ -248,7 +248,7 @@
     "You're logged in!": "لقد قمت بتسجيل الدخول!",
     "Stored Successfully": "تم الحفظ بنجاح",
     "Updated Successfully": "تم التحديث بنجاح",
-    "Deleted Successfully": "تم التحديث بنجاح",
+    "Deleted Successfully": "تم الحذف بنجاح",
     "Are you sure?": "هل أنت متأكد؟",
     "Bio": "نبذة مختصرة",
     "CV Link": "رابط السيرة الذاتية",
@@ -258,6 +258,9 @@
     "Course": "دورة تدريبية",
     "Other": "أخرى",
     "Search Page": "صفحة البحث",
+    "Main Info": "المعلومات الأساسية",
+    "User Photos": "الصور",
+    "User Works": "الأعمال",
     "There is no results.": "لا توجد نتائج.",
     "":""
 }

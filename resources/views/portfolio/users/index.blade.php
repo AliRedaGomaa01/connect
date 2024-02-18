@@ -1,14 +1,14 @@
 {{-- php variables --}}
 @php
     # lang
-    $showEn = [
+    $indexEn = [
 
 
     ];
-    $showAr = [
+    $indexAr = [
 
     ];
-    $show = app()->isLocale('ar') ?  $showAr : $showEn;
+    $index = app()->isLocale('ar') ?  $indexAr : $indexEn;
     # others
     $contentClasses = "p-10";
     $previousBtnCond =  $users['prev_page_url'] != true ;

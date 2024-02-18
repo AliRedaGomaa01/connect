@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\WorkTypesEnum;
 use App\Models\Work;
 use App\Http\Requests\WorkRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 class WorkController extends Controller
@@ -12,11 +13,17 @@ class WorkController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(?User $user=null)
     {
         $perPage = 15;
-        $works = collect(Work::orderBy('id', 'desc')->paginate($perPage))->toArray();
-        return view('portfolio.works.index', compact('works'));
+        if ($user == null) {
+            $followingIds = auth()->user()->followings()->pluck('id')->toArray();
+            $works = collect(Work::whereIn('user_id', $followingIds)->orderBy('id', 'desc')->paginate($perPage))->toArray();
+            return view('portfolio.works.index', compact('works'));
+        } else {
+            $works = collect($user->works()->orderBy('id', 'desc')->paginate($perPage))->toArray();
+            return view('portfolio.works.index', compact('works','user'));
+        }
     }
 
     /**

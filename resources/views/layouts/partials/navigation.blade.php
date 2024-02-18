@@ -25,6 +25,7 @@
     ] ;
 @endphp
 <nav>
+    {{-- Permanent Nav --}}
     <div class="bg-white items-center p-10   myBottomShadow relative z-10">
         <ul class="grid grid-cols-1 vsm:grid-cols-4 gap-5 it-ce text-main">
             @foreach ($nav as $key => $value)
@@ -45,6 +46,8 @@
             @endforeach
         </ul>
     </div>
+    {{-- Navs for specific pages --}}
+
     {{ $nav2 ?? '' }}
     {{ $nav3 ?? '' }}
     {{ $nav4 ?? '' }}

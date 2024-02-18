@@ -16,12 +16,12 @@ class Lang
     public function handle(Request $request, Closure $next): Response
     {
         if( isset($request->locale) && in_array($request->locale, ['ar','en'])) {
-            app()->setLocale($request->locale);
-            session()->put('locale', $request->locale);
+            $locale = $request->locale;
+            session()->put('locale', $locale);
         } else {
             $locale = session('locale') ?? app()->currentLocale();
-            app()->setLocale($locale);
         }
+        app()->setLocale($locale);
         return $next($request);
     }
 }

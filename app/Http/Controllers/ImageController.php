@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\image;
-use App\Services\SaveImageService;
+use App\Models\Image ;
+use App\Models\User;
+use App\Services\ImageService;
 use Illuminate\Http\Request;
 
 class ImageController extends Controller
@@ -11,9 +12,18 @@ class ImageController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(?User $user=null)
     {
-        //
+        $perPage = 15;
+        if ($user == null) {
+            $followingIds = auth()->user()->followings()->pluck('id')->toArray();
+            $images = collect(Image::whereIn('user_id', $followingIds)->orderBy('id', 'desc')->paginate($perPage))->toArray();
+            return view('portfolio.images.index', compact('images'));
+
+        } else {
+            $images = collect($user->images()->orderBy('id', 'desc')->paginate($perPage))->toArray();
+            return view('portfolio.images.index', compact('images','user'));
+        }
     }
 
     /**
@@ -30,11 +40,10 @@ class ImageController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'image' => 'required|image|max:2048',
+            'image' => [ 'required' , 'image' , 'extensions:jpg,png,jpeg' , 'mimes:jpeg,png,jpg' , 'max:10240'] ,
         ]);
-        dd($validated);
-        SaveImageService::save($request);
-        
+        ImageService::save($request);
+        return redirect()->back()->with('success', __("Stored Successfully"));
     }
 
     /**
@@ -42,7 +51,7 @@ class ImageController extends Controller
      */
     public function show(image $image)
     {
-        //
+        return response()->file('storage/' . $image->path);
     }
 
     /**
@@ -50,7 +59,7 @@ class ImageController extends Controller
      */
     public function edit(image $image)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -58,7 +67,7 @@ class ImageController extends Controller
      */
     public function update(Request $request, image $image)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -66,6 +75,8 @@ class ImageController extends Controller
      */
     public function destroy(image $image)
     {
-        //
+        ImageService::delete($image->path);
+        $image->delete();
+        return redirect()->back()->with('success', __("Deleted Successfully"));
     }
 }

@@ -44,9 +44,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
     # Relations 
-
     public function works()
     {
         return $this->hasMany(Work::class,'user_id','id');
@@ -55,7 +53,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Image::class,'user_id','id');
     }
+    # Follow Methods
+    public function following(){
+        return $this->belongsToMany(User::class,'follows','following_id','followed_id');
+    }
+    public function followedBy(){
+        return $this->belongsToMany(User::class,'follows','followed_id','following_id');
+    }
+    public function followStatus($id){
+        return Follow::where('followed_id',$id)->where('following_id',auth()->id())->count() > 0 ? 'following' : 'unfollowing';
+    }
 
-
-    
 }
