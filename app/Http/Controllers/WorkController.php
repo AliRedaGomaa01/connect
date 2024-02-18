@@ -17,9 +17,10 @@ class WorkController extends Controller
     {
         $perPage = 15;
         if ($user == null) {
-            $followingIds = auth()->user()->followings()->pluck('id')->toArray();
-            $works = collect(Work::whereIn('user_id', $followingIds)->orderBy('id', 'desc')->paginate($perPage))->toArray();
-            return view('portfolio.works.index', compact('works'));
+            $user = auth()->user();
+            $followingIds = $user->following?->pluck('id')?->toArray();
+            $works = collect(Work::whereIn('user_id', $followingIds)->orderBy('id', 'desc')?->paginate($perPage))?->toArray();
+            return view('portfolio.works.index', compact('works','user'));
         } else {
             $works = collect($user->works()->orderBy('id', 'desc')->paginate($perPage))->toArray();
             return view('portfolio.works.index', compact('works','user'));

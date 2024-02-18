@@ -46,6 +46,19 @@
             @endforeach
         </ul>
     </div>
+    <div class="bg-white items-center p-10   myBottomShadow relative z-10">
+        <ul class="grid grid-cols-1 vsm:grid-cols-3 gap-5 it-ce text-main">
+                    <li>
+                        <a href="{{route('users.index')}}" class="{{ route('users.index') === url()->current() ? 'active' : '' }} hover:active">{{__("Users")}}</a>
+                    </li>
+                    <li>
+                        <a href="{{route('works.index')}}" class="{{ route('works.index') === url()->current() ? 'active' : '' }} hover:active">{{__("Followed Works")}}</a>
+                    </li>
+                    <li>
+                        <a href="{{route('images.index')}}" class="{{ route('images.index') === url()->current() ? 'active' : '' }} hover:active">{{__("Followed Images")}}</a>
+                    </li>
+        </ul>
+    </div>
     {{-- Navs for specific pages --}}
 
     {{ $nav2 ?? '' }}

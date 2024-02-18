@@ -65,7 +65,9 @@ class UserController extends Controller
         }
         $user = User::find($id);
         $followStatus = auth()->user()->followStatus($user->id);
-        return view('portfolio.users.show', compact('user','followStatus'));
+        $followingCount = $user->following()->count();
+        $followedByCount = $user->followedBy()->count();
+        return view('portfolio.users.show', compact('user','followStatus' , 'followingCount' , 'followedByCount' ));
     }
 
     /**

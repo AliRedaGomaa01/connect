@@ -2,11 +2,14 @@
 @php
     # lang
     $showEn = [
-
-
+        'following' => 'This user is following',
+        'followed' =>  'This use has been followed by', 
+        "other users" => "other users. Click to see.",
     ];
     $showAr = [
-
+        'following' => 'هذا المستخدم يتابع',
+        'followed' =>  'هذا المستخدم تتم متابعته بواسطة', 
+        "other users" => "مستخدمين آخرين. انقر للعرض.",
     ];
     $show = app()->isLocale('ar') ?  $showAr : $showEn;
     # others
@@ -26,6 +29,9 @@
             <p class='{{$contentClasses}}'>{{$user['bio']  ?? "---"}}</p>
             <h3>{{__('CV Link')}}</h3>
             <a class='{{$contentClasses}} underline' href="{{$user['cv_link']??'/#'}}" target="_blank">{{__('CV Link')}} </a>
+            <h3>{{__('Follows')}}</h3>
+            <a class=' px-10 py-5 underline' href="{{route('follows',[ $user['id'] , 'following' ] ) }}" target="_blank">{{$show['following'] . ' ' . $followingCount . ' ' . $show['other users'] }} </a>
+            <a class=' px-10 py-5 underline' href="{{route('follows',[ $user['id'] , 'followed' ] ) }}" target="_blank">{{ $show['followed'] . ' ' . $followedByCount . ' ' . $show['other users'] }} </a>
             <div id="followBtnDiv" class="grid">
                 <x-primary-button id="followBtn" class="justify-self-center" onclick="togglefollowServer()">{{__('Follow')}}</x-primary-button>
                 <x-primary-button id="unfollowBtn" class="justify-self-center bg-red-600" onclick="togglefollowServer()">{{__('Unfollow')}}</x-primary-button>

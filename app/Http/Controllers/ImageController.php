@@ -16,9 +16,10 @@ class ImageController extends Controller
     {
         $perPage = 15;
         if ($user == null) {
-            $followingIds = auth()->user()->followings()->pluck('id')->toArray();
-            $images = collect(Image::whereIn('user_id', $followingIds)->orderBy('id', 'desc')->paginate($perPage))->toArray();
-            return view('portfolio.images.index', compact('images'));
+            $user = auth()->user();
+            $followingIds = $user->following?->pluck('id')?->toArray();
+            $images = collect(Image::whereIn('user_id', $followingIds)->orderBy('id', 'desc')?->paginate($perPage))?->toArray();
+            return view('portfolio.images.index', compact('images','user'));
 
         } else {
             $images = collect($user->images()->orderBy('id', 'desc')->paginate($perPage))->toArray();
