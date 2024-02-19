@@ -10,26 +10,12 @@ use Illuminate\Support\Facades\DB;
 class FollowController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Handle the incoming request.
      */
-    public function index()
+    public function __invoke(Request $request)
     {
-        return abort(404);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return abort(404);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
+        // making following and unfollowing actions
+        // then returns following status 
         $validated = $request->validate([
             "followed_id" => ['required' , 'numeric' , 'min:1' ,'exists:users,id'],
             "following_id" => ['required' , 'numeric' , 'min:1' ,'exists:users,id'],
@@ -48,37 +34,18 @@ class FollowController extends Controller
             Follow::where('followed_id', $validated['followed_id'])->where('following_id', $validated['following_id'])?->delete();
             return response()->json(auth()->user()->followStatus($validated['followed_id']));
         }
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Follow $follow)
-    {
-        return abort(404);
+        // // Show follows count 
+        // $userIds = User::pluck('id')->toArray();
+        // if (  in_array($id , $userIds) && $status == 'following') {
+        //     $user = User::find($id);
+        //     return response()->json($user->following()->count());
+        // } elseif ( in_array($id , $userIds) && $status == 'followed') {
+        //     $user = User::find($id);
+        //     return response()->json($user->following()->count());
+        // } else {
+        //     return abort(404);
+        // }
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Follow $follow)
-    {
-        return abort(404);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Follow $follow)
-    {
-        return abort(404);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Request $request)
-    {
-        return abort(404);
-    }
+  
 }

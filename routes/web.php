@@ -3,10 +3,12 @@
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkController;
 use App\Models\Follow;
+use App\Models\Work;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,20 +25,23 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('lang')->group(function () {
 
     require __DIR__.'/auth.php';
-    // Testing
-    Route::get('/test', function () {
+    /* Testing */
+    // Route::get('/t', function () {
 
-    })->name('test');
+    // })->name('test');
+    // ****************************************************************************
     // Route::get('/test', [UserController::class, 'index'])->name('test');
-
-    Route::get('/', function () {
-        return view('zz-unused.coming-soon');
-    })->name('landing');
-
-    Route::get('/r', function () {
-        return view('zz-unused.all-routes');
-    })->name('routes');
-
+    // ****************************************************************************
+    /* Show main routes*/
+    // Route::get('/r', function () {
+    //     return view('zz-unused.all-routes');
+    // })->name('routes');
+    // ****************************************************************************
+    // Route::get('/', function () {
+    //     return view('zz-unused.coming-soon');
+    // })->name('landing');
+    // ****************************************************************************
+    Route::view('/', 'landing')->name('landing');
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->middleware(['auth', 'verified'])->name('dashboard');
@@ -49,8 +54,8 @@ Route::middleware('lang')->group(function () {
 
     Route::middleware('auth')->prefix('portfolio')->group(function () {
         # users
-        Route::get('users/{user:id}/images',[ImageController::class, 'index'])->name('users.images');
-        Route::get('users/{user:id}/works',[WorkController::class, 'index'])->name('users.works');
+        Route::get('users/{id}/images',[ImageController::class, 'index'])->name('users.images');
+        Route::get('users/{id}/works',[WorkController::class, 'index'])->name('users.works');
         Route::get('users/{id}/followers/{status?}',[UserController::class, 'index'])->name('follows');  // status ['following' , 'followed']
         Route::controller(UserController::class)->group(function () {
             Route::get('users/search', 'search')->name('users.search');
@@ -66,7 +71,8 @@ Route::middleware('lang')->group(function () {
         // Route::controller(ImageController::class)->group(function () {});
         Route::resource('images', ImageController::class);
         # follows
-        Route::resource('follows', FollowController::class)->only(['store','destroy']);
+        Route::post('follows', FollowController::class)->name('follows');
+        Route::post('likes', LikeController::class)->name('likes');
     });
 });
     

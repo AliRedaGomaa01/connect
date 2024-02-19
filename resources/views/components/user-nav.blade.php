@@ -8,7 +8,7 @@
                     <a href="{{route('users.works',$user['id'])}}" class="{{ route('users.works',$user['id']) === url()->current() ? 'active' : '' }} hover:active">{{__("User Works")}}</a>
                 </li>
                 <li>
-                    <a href="{{route('users.images',$user['id'])}}" class="{{ route('users.images',$user['id']) === url()->current() ? 'active' : '' }} hover:active">{{__("User Photos")}}</a>
+                    <a href="{{route('users.images',$user['id'])}}" class="{{ route('users.images',$user['id']) === url()->current() ? 'active' : '' }} hover:active">{{__("User Images")}}</a>
                 </li>
             </ul>
         </div>

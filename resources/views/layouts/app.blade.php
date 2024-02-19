@@ -26,22 +26,22 @@
         <script src="{{asset('/assets/js/jquery.js')}}"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased relative min-h-[100vh]">
+    <body class="font-sans antialiased relative min-h-[100vh] min-w-[100vh]">
         <!-- Header -->
 
         @include('layouts.partials.header')
 
         <!-- Page Content -->
-        <main class="grid it-ce my-[5rem] min-h-[60vh]">
+        <main class="grid it-ce my-[5rem] min-h-[60vh] mx-auto">
             {{ $slot }}
         </main>
         </div>
-
+        <!-- Footer -->
         <div class="p-10"></div>
         <div id='test'class="absolute bottom-0 w-[100%] bg-black">
             @include('layouts.partials.footer')
         </div>
+        <!-- Scripts -->
         @yield('scripts')
-
     </body>
 </html>

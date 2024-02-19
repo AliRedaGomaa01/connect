@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Work extends Model
 {
@@ -15,12 +14,18 @@ class Work extends Model
     public function user(){
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
-
-    /**
-     * Get all of the work's likes.
-     */
-    public function likes(): MorphMany
+    public function likes()
     {
-        return $this->morphMany(Like::class, 'likeable');
+        return $this->morphMany(Like::class, 'likeable' , 'likeable_type', 'likeable_id');
     }
+
+    // /**
+    //  * if a work is liked.
+    // */
+    // public function isLiked($id = null)
+    // {
+    //     if ($id) {
+    //         return $this->likes()->where('user_id', $id)->count() > 0 ? 'liked' : 'notLiked' ;
+    //     }
+    // }
 }

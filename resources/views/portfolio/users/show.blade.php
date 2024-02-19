@@ -3,13 +3,15 @@
     # lang
     $showEn = [
         'following' => 'This user is following',
-        'followed' =>  'This use has been followed by', 
-        "other users" => "other users. Click to see.",
+        'followed' =>  'This user is followed by', 
+        "other users" => "other users.",
+        "click" => " Click to see",
     ];
     $showAr = [
         'following' => 'هذا المستخدم يتابع',
         'followed' =>  'هذا المستخدم تتم متابعته بواسطة', 
-        "other users" => "مستخدمين آخرين. انقر للعرض.",
+        "other users" => "مستخدمين آخرين.",
+        "click" => "انقر للعرض",
     ];
     $show = app()->isLocale('ar') ?  $showAr : $showEn;
     # others
@@ -29,9 +31,15 @@
             <p class='{{$contentClasses}}'>{{$user['bio']  ?? "---"}}</p>
             <h3>{{__('CV Link')}}</h3>
             <a class='{{$contentClasses}} underline' href="{{$user['cv_link']??'/#'}}" target="_blank">{{__('CV Link')}} </a>
+            {{-- follow info --}}
             <h3>{{__('Follows')}}</h3>
-            <a class=' px-10 py-5 underline' href="{{route('follows',[ $user['id'] , 'following' ] ) }}" target="_blank">{{$show['following'] . ' ' . $followingCount . ' ' . $show['other users'] }} </a>
-            <a class=' px-10 py-5 underline' href="{{route('follows',[ $user['id'] , 'followed' ] ) }}" target="_blank">{{ $show['followed'] . ' ' . $followedByCount . ' ' . $show['other users'] }} </a>
+            <p class=' px-10 py-5'>
+                {{$show['following'] . ' ' }} <span  class="text-white bg-main p-2 rounded-lg font-[900]">{{ $followingCount }}</span>  {{ ' ' . $show['other users'] }}  <a class=' text-white bg-main p-2 rounded-lg  underline' href="{{route('follows',[ $user['id'] , 'following' ] ) }}" target="_blank"> {{ ' ' . $show['click'] }} </a>
+            </p>
+            <p class=' px-10 py-5'>
+                {{$show['followed'] . ' ' }} <span id="followedCount" class="text-white bg-main p-2 rounded-lg font-[900]">{{ $followedByCount }}</span> {{ ' ' . $show['other users'] }}  <a class=' text-white bg-main p-2 rounded-lg underline' href="{{route('follows',[ $user['id'] , 'followed' ] ) }}" target="_blank"> {{ ' ' . $show['click'] }} </a>
+            </p>
+            {{-- follow btn --}}
             <div id="followBtnDiv" class="grid">
                 <x-primary-button id="followBtn" class="justify-self-center" onclick="togglefollowServer()">{{__('Follow')}}</x-primary-button>
                 <x-primary-button id="unfollowBtn" class="justify-self-center bg-red-600" onclick="togglefollowServer()">{{__('Unfollow')}}</x-primary-button>
@@ -43,9 +51,17 @@
             var followBtnDiv = $('#followBtnDiv');
             var followBtn = $('#followBtn');
             var unfollowBtn = $('#unfollowBtn');
+            var followedCount = $('#followedCount');
             var followStatus = {!! json_encode($followStatus) !!} ;
             var toggleFollowStatus = () => {
                 return followStatus = followStatus == 'unfollowing' ? 'following' : (followStatus == 'following' ? 'unfollowing' : '');
+            }
+            var updateFollowedCount = () => {
+                if (followStatus == 'following')  {
+                    followedCount.html(+followedCount.html()+1);
+                } else if (followStatus == 'unfollowing'){
+                    followedCount.html(+followedCount.html()-1);
+                }
             }
             var toggleFollowBtn = () => { 
                 if ({!!  json_encode($user["id"] === auth()->id())  !!}) {
@@ -57,7 +73,7 @@
                 }
             }
             var togglefollowServer = async () => {
-                await axios.post(  {!!  json_encode(route('follows.store'))  !!}  ,
+                await axios.post(  {!!  json_encode(route('follows'))  !!}  ,
                     {
                     '_token' :   {!!  json_encode(csrf_token())  !!} ,
                     'followed_id' :  {!!  json_encode($user["id"])  !!} ,
@@ -66,7 +82,8 @@
                 ).then((res) => {
                     toggleFollowStatus();
                     toggleFollowBtn();
-                }).catch((err)=>{alert(err)})
+                    updateFollowedCount();
+                }).catch((err)=>{console.log(err)})
             }
             toggleFollowBtn();
         </script>

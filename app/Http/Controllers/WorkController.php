@@ -6,6 +6,7 @@ use App\Enums\WorkTypesEnum;
 use App\Models\Work;
 use App\Http\Requests\WorkRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 class WorkController extends Controller
@@ -13,17 +14,25 @@ class WorkController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(?User $user=null)
+        public function index(Request $request)
     {
         $perPage = 15;
-        if ($user == null) {
+        $id = $request->id ?? null ;
+        if ($id == null) {
             $user = auth()->user();
             $followingIds = $user->following?->pluck('id')?->toArray();
             $works = collect(Work::whereIn('user_id', $followingIds)->orderBy('id', 'desc')?->paginate($perPage))?->toArray();
             return view('portfolio.works.index', compact('works','user'));
+
         } else {
-            $works = collect($user->works()->orderBy('id', 'desc')->paginate($perPage))->toArray();
-            return view('portfolio.works.index', compact('works','user'));
+            $userIds = User::pluck('id')->toArray();
+            if (in_array($id,$userIds)) {
+                $user = User::find($id);
+                $works = collect($user->works()->orderBy('id', 'desc')->paginate($perPage))->toArray();
+                return view('portfolio.works.index', compact('works','user'));
+            } else {
+                return abort(404);
+            }
         }
     }
 
@@ -43,7 +52,7 @@ class WorkController extends Controller
     {
         $validated = $request->validated();
         auth()->user()->works()->create($validated);
-        return redirect()->route('works.index')->with('success', __('Stored Successfully'));
+        return redirect()->route('works.index',['id' => auth()->id()])->with('success', __("Stored Successfully"));
     }
 
     /**
@@ -51,7 +60,11 @@ class WorkController extends Controller
      */
     public function show(Work $work)
     {
-        $work = $work->load('user')->toArray();
+        $likesCount = $work->likes()->count();
+        $likeStatus = $work->likes()->where('user_id', auth()->id())->count() > 0 ? 'liked' : 'notLiked' ;
+        $work = $work->toArray();
+        $work['likesCount'] = $likesCount;
+        $work['likeStatus'] = $likeStatus;
         return view('portfolio.works.show', compact('work'));   
     }
 
@@ -71,7 +84,8 @@ class WorkController extends Controller
     {
         $validated = $request->validated();
         $work->update($validated);
-        return redirect()->route('works.index')->with('success', __('Updated Successfully'));
+        return redirect()->route('works.index',['id' => auth()->id()])->with('success', __("Updated Successfully"));
+
     }
 
     /**
@@ -80,6 +94,6 @@ class WorkController extends Controller
     public function destroy(Work $work)
     {
         $work->delete();
-        return redirect()->route('works.index')->with('success', __('Deleted Successfully'));
+        return redirect()->route('works.index',['id' => auth()->id()])->with('success', __("Deleted Successfully"));
     }
 }

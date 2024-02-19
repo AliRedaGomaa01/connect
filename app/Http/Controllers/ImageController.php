@@ -12,18 +12,25 @@ class ImageController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(?User $user=null)
+    public function index(Request $request)
     {
         $perPage = 15;
-        if ($user == null) {
+        $id = $request->id ?? null ;
+        if ($id == null) {
             $user = auth()->user();
             $followingIds = $user->following?->pluck('id')?->toArray();
             $images = collect(Image::whereIn('user_id', $followingIds)->orderBy('id', 'desc')?->paginate($perPage))?->toArray();
             return view('portfolio.images.index', compact('images','user'));
 
         } else {
-            $images = collect($user->images()->orderBy('id', 'desc')->paginate($perPage))->toArray();
-            return view('portfolio.images.index', compact('images','user'));
+            $userIds = User::pluck('id')->toArray();
+            if (in_array($id,$userIds)) {
+                $user = User::find($id);
+                $images = collect($user->images()->orderBy('id', 'desc')->paginate($perPage))->toArray();
+                return view('portfolio.images.index', compact('images','user'));
+            } else {
+                return abort(404);
+            }
         }
     }
 
@@ -44,7 +51,7 @@ class ImageController extends Controller
             'image' => [ 'required' , 'image' , 'extensions:jpg,png,jpeg' , 'mimes:jpeg,png,jpg' , 'max:10240'] ,
         ]);
         ImageService::save($request);
-        return redirect()->back()->with('success', __("Stored Successfully"));
+        return redirect()->route('images.index',['id' => auth()->id()])->with('success', __("Stored Successfully"));
     }
 
     /**
@@ -52,7 +59,12 @@ class ImageController extends Controller
      */
     public function show(image $image)
     {
-        return response()->file('storage/' . $image->path);
+        $likesCount = $image->likes()->count();
+        $likeStatus = $image->likes()->where('user_id', auth()->id())->count() > 0 ? 'liked' : 'notLiked' ;
+        $image = $image->toArray();
+        $image['likesCount'] = $likesCount;
+        $image['likeStatus'] = $likeStatus;
+        return view('portfolio.images.show',compact('image'));
     }
 
     /**
@@ -78,6 +90,6 @@ class ImageController extends Controller
     {
         ImageService::delete($image->path);
         $image->delete();
-        return redirect()->back()->with('success', __("Deleted Successfully"));
+        return redirect()->route('images.index',['id' => auth()->id()])->with('success', __("Deleted Successfully"));
     }
 }

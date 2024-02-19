@@ -28,14 +28,18 @@
             <p class="myShadow rounded-xl m-5 p-5 w-[90%] grid gap-5 text-center">{{$index['no images']}}</p>
         @endif
         @foreach ($images['data'] as $image)
-            <div class="myShadow rounded-xl m-5 p-5 w-[90%] grid gap-5 relative">
-                <form id="deleteImageForm" action="{{route('images.destroy',$image['id'])}}" method="post">
-                    @csrf
-                    @method('DELETE')
-                </form>
-                <button onclick="if(confirm('{{__('Are you sure?')}}')){deleteImageForm.submit()}" class="absolute top-3 right-3 bg-red-600 rounded-full h-[2em] w-[2em] grid it-ce text-white font-[900]">X</button>
+            <div class="myShadow rounded-xl m-5 p-5 w-[90%] grid gap-5 relative" x-data="{
+                deleteFn: ($el)=>{if(confirm('{{json_encode(__('Are you sure?'))}}')){$el.submit()}}
+            }">
+                @if (auth()->id() == $image['user_id'])
+                    <form  action="{{route('images.destroy',$image['id'])}}" method="post" x-on:click.prevent="deleteFn($el)">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="absolute top-3 right-3 bg-red-600 rounded-full h-[2em] w-[2em] grid it-ce text-white font-[900]">X</button>
+                    </form>
+                @endif
                 <a href="{{route('images.show',$image['id'])}}" class="justify-self-center">
-                    <img src="{{asset('storage/'.$image['path'])}}" alt="usre image">
+                    <img src="{{asset('storage/'.$image['path'])}}" alt="user image" >
                 </a>
             </div>
         @endforeach

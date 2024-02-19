@@ -15,11 +15,17 @@ class Image extends Model
     public function user(){
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
-        /**
-     * Get all of the image's likes.
-     */
     public function likes(): MorphMany
     {
         return $this->morphMany(Like::class, 'likeable');
     }
+    // /**
+    //  * if an image is liked.
+    // */
+    // public function isLiked($id = null)
+    // {
+    //     if ($id) {
+    //         return $this->likes()->where('user_id', $id)->count() > 0;
+    //     }
+    // }
 }
