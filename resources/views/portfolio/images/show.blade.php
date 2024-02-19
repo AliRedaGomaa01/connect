@@ -24,7 +24,7 @@
                 </form>
             @endif
             <div  class="justify-self-center">
-                <img src="{{asset('storage/'.$image['path'])}}" alt="user image" >
+                <img src="{{asset('storage'.$image['path'])}}" alt="user image" >
             </div>
         </div>
         @if ($image['user_id'] != auth()->id())

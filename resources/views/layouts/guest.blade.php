@@ -30,7 +30,7 @@
         <!-- Header -->
         @include('layouts.partials.header')
         <!-- Page Content -->
-        <main class="grid it-ce my-[5rem] mx-auto min-h-[60vh] vsm:w-[300px]  sm:w-[500px] md:w-[700px] lg:w-[900px] ">
+        <main class="grid it-ce my-[5rem] mx-auto min-h-[100vh] vsm:w-[300px]  sm:w-[500px] md:w-[700px] lg:w-[900px] ">
             <div class="myShadow p-5 rounded-xl w-[80vw] vsm:w-[80%] lg:[50%]">
                 {{ $slot }}
             </div>

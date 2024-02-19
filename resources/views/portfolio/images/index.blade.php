@@ -39,7 +39,7 @@
                     </form>
                 @endif
                 <a href="{{route('images.show',$image['id'])}}" class="justify-self-center">
-                    <img src="{{asset('storage/'.$image['path'])}}" alt="user image" >
+                    <img src="{{asset('storage'.$image['path'])}}" alt="user image" >
                 </a>
             </div>
         @endforeach
