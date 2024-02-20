@@ -32,8 +32,8 @@
             @include('layouts.partials.header')
         </header>
         <!-- Page Content -->
-        <main class="grid co-ce mx-auto w-[600px] lg:w-[70vh] myShadow m-5 rounded-xl">
-            <div class="w-[500px] lg:w-[60vh]">
+        <main class="grid co-ce mx-auto w-[600px] lg:w-[70vh] myShadow m-5 rounded-xl p-5">
+            <div class="w-[500px] lg:w-[60vh] p-5">
                 {{ $slot }}
             </div>
         </main>
