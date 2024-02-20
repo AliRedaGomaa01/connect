@@ -29,5 +29,6 @@
         <p class="{{$contentClasses}}">{{$landing['body3']}}</p>
         <p class="{{$contentClasses}}">{{$landing['body4']}}</p>
         <a href="https://aligh.net" class="underline" target="_blank">https://aligh.net</a>
+        <p align="center" class="underline"><a href="https://github.com/AliRedaGomaa01/connect" target="_blank">https://github.com/AliRedaGomaa01/connect</a></p>
     </div>
 </x-guest-layout>
