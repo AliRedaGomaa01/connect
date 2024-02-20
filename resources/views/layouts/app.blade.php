@@ -26,21 +26,23 @@
         <script src="{{asset('/assets/js/jquery.js')}}"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased relative min-h-[100vh] min-w-[100vh]">
+    <body class="font-sans antialiased relative min-h-[100vh] w-[100vw] min-w-[900px] grid items-between gap-10 ">
         <!-- Header -->
-
-        @include('layouts.partials.header')
-
+        <header class="grid items-start">
+            @include('layouts.partials.header')
+        </header>
         <!-- Page Content -->
-        <main class="grid it-ce my-[5rem] min-h-[100vh] mx-auto">
-            {{ $slot }}
+        <main class="grid co-ce mx-auto w-[600px] lg:w-[70vh] m-5 rounded-xl ">
+            <div class="w-[500px] lg:w-[60vh]">
+                {{ $slot }}
+            </div>
         </main>
-        </div>
         <!-- Footer -->
-        <div class="p-10"></div>
-        <div id='test'class="absolute bottom-0 w-[100%] bg-black">
-            @include('layouts.partials.footer')
-        </div>
+        <footer class="grid items-end">
+            <div class="grid it-ce  bg-main px-10 py-5 w-full myTopShadow">
+                @include('layouts.partials.footer')
+            </div>
+        </footer>
         <!-- Scripts -->
         @yield('scripts')
     </body>

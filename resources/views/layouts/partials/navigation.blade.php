@@ -23,12 +23,15 @@
         'logout' => route('logout') ,
         'lang' => app()->isLocale('ar') ? ( $hasQuery ? $url.'&locale=en' : $url.'?locale=en') : ( $hasQuery ? $url.'&locale=ar' : $url.'?locale=ar' ),
     ] ;
+    $yourPageCond = auth()->check() 
+        ? url()->current() == route('users.show',auth()->id())  || url()->current() == route('users.works',auth()->id()) || url()->current() == route('users.images',auth()->id())
+        : false ;
 @endphp
 <nav>
     {{-- Guest Nav --}}
     @guest
         <div class="bg-white items-center p-10   myBottomShadow relative z-30">
-            <ul class="grid grid-cols-1 vsm:grid-cols-4 gap-5 it-ce text-main">
+            <ul class="grid grid-cols-4 gap-5 it-ce text-main">
                 <li>
                     <a href="{{route('landing')}}" class="{{ route('landing') === url()->current() ? 'active' : '' }} hover:active">{{__("Home")}}</a>
                 </li>
@@ -50,7 +53,7 @@
         {{-- All pages nav --}}
         @auth
             <div class="bg-white items-center p-10   myBottomShadow relative z-30">
-                <ul class="grid grid-cols-1 vsm:grid-cols-5 gap-5 it-ce text-main">
+                <ul class="grid grid-cols-5 gap-5 it-ce text-main">
                     <li>
                         <a href="{{route('landing')}}" class="{{ route('landing') === url()->current() ? 'active' : '' }} hover:active">{{__("Home")}}</a>
                     </li>
@@ -73,9 +76,9 @@
                 </ul>
             </div>
             <div class="bg-white items-center p-10   myBottomShadow relative z-20">
-                <ul class="grid grid-cols-1 vsm:grid-cols-4 gap-5 it-ce text-main">
+                <ul class="grid  grid-cols-4 gap-5 it-ce text-main">
                     <li>
-                        <a href="{{route('users.show',auth()->id())}}" class="{{ route('users.show',auth()->id()) === url()->current() ? 'active' : '' }} hover:active">{{__("Your Page")}}</a>
+                        <a href="{{route('users.show',auth()->id())}}" class="{{ $yourPageCond ? 'active' : '' }} hover:active">{{__("Your Page")}}</a>
                     </li>
                     <li>
                         <a href="{{route('users.index')}}" class="{{ route('users.index') === url()->current() ? 'active' : '' }} hover:active">{{__("Users")}}</a>

@@ -16,7 +16,7 @@
     $allBtnsCond = $users['last_page'] === 1 ;
 @endphp
 <x-app-layout>
-    <div class="grid it-ce m-10 p-10 vsm:w-[300px] sm:w-[600px] md:w-[800px]">
+    <div class="grid it-ce  p-10 ">
         <a href="{{route('users.search')}}" class="myShadow rounded-xl m-5 p-5 w-[90%] grid gap-5">
             <x-primary-button class="justify-self-center">{{__('Search Page')}}</x-primary-button>
         </a>

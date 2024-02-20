@@ -16,7 +16,7 @@
     $contentClasses = "p-10";
 @endphp
 <x-app-layout>
-    <div class="grid it-ce m-10 p-10 vsm:w-[300px] sm:w-[600px] md:w-[800px]">
+    <div class="grid it-ce  p-10 ">
         <div class="myShadow rounded-xl m-5 p-5 w-[90%] grid gap-5">
             <h3>{{__('Category')}}</h3>
             <p class='{{$contentClasses}}'>{{$work['category']}}</p>

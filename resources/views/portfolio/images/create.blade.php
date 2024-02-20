@@ -1,6 +1,6 @@
 
 <x-app-layout>
-    <div class="grid it-ce m-10 p-10 myShadow rounded-xl vsm:w-[300px] sm:w-[600px] md:w-[800px]">
+    <div class="grid it-ce  p-10 myShadow rounded-xl ">
         <form action="{{route('images.store')}}" method="POST" class="w-full" encType="multipart/form-data">
             @csrf
             <h3 class="text-center m-10">{{__('Add New')}}</h3>

@@ -9,7 +9,7 @@
     ];
     $nav = app()->isLocale('ar') ?  $navAr : $navEn;
 @endphp
-<header>
+<div class="">
     <div class="bg-main grid grid-cols-2 items-center px-10 py-5  myBottomShadow relative z-50">
         <a href="/"><h1 class="text-white text-3xl justify-self-start">{{$nav['Connect']}}</h1></a>
         <div class="justify-self-end  border-[4px] hover:border-white border-main rounded-full  p-2 grid it-ce" onclick="navToggleFn()">
@@ -20,7 +20,8 @@
         @include('layouts.partials.navigation')
     </div>
     @include('layouts.partials.flashed-messages')
-</header>
+</div>
+
 
 <script>
     var hide = false;
