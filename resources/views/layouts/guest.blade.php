@@ -26,7 +26,7 @@
         <script src="{{asset('/assets/js/jquery.js')}}"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased relative min-h-[100vh] w-[100vw] min-w-[900px] grid items-between gap-10 ">
+    <body class="font-sans antialiased min-h-[100vh] h-screen w-[100vw] min-w-[900px] grid items-between gap-10 ">
         <!-- Header -->
         <header class="grid items-start">
             @include('layouts.partials.header')
