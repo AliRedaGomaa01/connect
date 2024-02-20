@@ -2,7 +2,7 @@
 
 It is a project that I ( Ali Hussein ) made using ( laravel - blade - jquery - albine - axios - breeze ).
 
-It's designed & developed and deployed by me.
+It has been designed & developed and deployed by me.
 
 You can visit my website to get all info about me.
 
