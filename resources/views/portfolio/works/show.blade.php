@@ -16,7 +16,7 @@
     $contentClasses = "p-10";
 @endphp
 <x-app-layout>
-    <div class="grid it-ce  p-10 ">
+    <x-container>
         <div class="myShadow rounded-xl m-5 p-5 w-[90%] grid gap-5">
             <h3>{{__('Category')}}</h3>
             <p class='{{$contentClasses}}'>{{$work['category']}}</p>
@@ -63,7 +63,7 @@
             </div>
         @endif
         {{-- end of buttons --}}
-    </div>
+    </x-container>
     @section('scripts')
         <script>
             // ************* deleteing work Fn 

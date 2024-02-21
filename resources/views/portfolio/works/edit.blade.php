@@ -1,6 +1,6 @@
 
 <x-app-layout>
-    <div class="grid it-ce  p-10 myShadow rounded-xl ">
+    <x-container>
         <form action="{{route('works.update',$work['id'])}}" method="POST" class="w-full">
             @csrf
             @method('PATCH')
@@ -40,7 +40,7 @@
                 <x-primary-button type="submit" class="justify-self-start my-5">{{__('Edit')}}</x-primary-button>
             </div>
         </form>
-    </div>
+    </x-container>
     @section('scripts')
         <script>
             var toggleCategoryFn = function(){

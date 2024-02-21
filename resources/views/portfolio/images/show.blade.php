@@ -12,10 +12,10 @@
     $contentClasses = "p-10";
 @endphp
 <x-app-layout>
-    <div class="grid it-ce  p-10 ">
+    <x-container>
         <div class="myShadow rounded-xl m-5 p-5 w-[90%] grid gap-5 relative" x-data="{
             deleteFn($el){if(confirm('{{json_encode(__('Are you sure?'))}}')){$el.submit()}}
-        }">
+            }">
             @if (auth()->id() == $image['user_id'])
                 <form  action="{{route('images.destroy',$image['id'])}}" method="post" x-on:click.prevent="deleteFn($el)">
                     @csrf
@@ -44,7 +44,7 @@
                 @endif
             </div>
         @endif
-    </div>
+    </x-container>
 
     @section('scripts')
         <script>

@@ -21,7 +21,7 @@
     @slot('nav2')
         <x-user-nav :user="$user"></x-user-nav>
     @endslot
-    <div class="grid it-ce  p-10 ">
+    <x-container>
         <div class="myShadow rounded-xl m-5 p-5 w-[90%] grid gap-5">
             <h3>{{__('Name')}}</h3>
             <p class='{{$contentClasses}}'>{{$user['name']}}</p>
@@ -34,10 +34,10 @@
             {{-- follow info --}}
             <h3>{{__('Follows')}}</h3>
             <p class=' px-10 py-5'>
-                {{$show['following'] . ' ' }} <span  class="text-white bg-main p-2 rounded-lg font-[900]">{{ $followingCount }}</span>  {{ ' ' . $show['other users'] }}  <a class=' text-white bg-main p-2 rounded-lg  underline' href="{{route('follows',[ $user['id'] , 'following' ] ) }}" target="_blank"> {{ ' ' . $show['click'] }} </a>
+                {{$show['following'] . ' ' }} <span  class="text-white bg-main p-2 rounded-lg font-[900]">{{ $followingCount }}</span>  {{ ' ' . $show['other users'] }} <br> <a class=' text-white bg-main p-2 rounded-lg  underline' href="{{route('follows',[ $user['id'] , 'following' ] ) }}" target="_blank"> {{ ' ' . $show['click'] }} </a>
             </p>
             <p class=' px-10 py-5'>
-                {{$show['followed'] . ' ' }} <span id="followedCount" class="text-white bg-main p-2 rounded-lg font-[900]">{{ $followedByCount }}</span> {{ ' ' . $show['other users'] }}  <a class=' text-white bg-main p-2 rounded-lg underline' href="{{route('follows',[ $user['id'] , 'followed' ] ) }}" target="_blank"> {{ ' ' . $show['click'] }} </a>
+                {{$show['followed'] . ' ' }} <span id="followedCount" class="text-white bg-main p-2 rounded-lg font-[900]">{{ $followedByCount }}</span> {{ ' ' . $show['other users'] }} <br> <a class=' text-white bg-main p-2 rounded-lg underline' href="{{route('follows',[ $user['id'] , 'followed' ] ) }}" target="_blank"> {{ ' ' . $show['click'] }} </a>
             </p>
             {{-- follow btn --}}
             <div id="followBtnDiv" class="grid">
@@ -45,7 +45,7 @@
                 <x-primary-button id="unfollowBtn" class="justify-self-center bg-red-600" onclick="togglefollowServer()">{{__('Unfollow')}}</x-primary-button>
             </div>
         </div>
-    </div>
+    </x-container>
     @section('scripts')
         <script>
             var followBtnDiv = $('#followBtnDiv');

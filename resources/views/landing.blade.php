@@ -22,13 +22,13 @@
     $contentClasses = "text-main";
 @endphp
 <x-guest-layout>
-    <div class="grid gap-5 p-5 text-center">
+    <div class="grid gap-5 text-center">
         <h1 class="text-center text-main text-3xl font-[900] p-5 rounded-xl ">{{$landing['header']}}</h1>
         <p class="{{$contentClasses}}">{{$landing['body']}}</p>
         <p class="{{$contentClasses}}">{{$landing['body2']}}</p>
         <p class="{{$contentClasses}}">{{$landing['body3']}}</p>
         <p class="{{$contentClasses}}">{{$landing['body4']}}</p>
-        <a href="https://aligh.net" class="underline" target="_blank">https://aligh.net</a>
-        <p align="center" class="underline"><a href="https://github.com/AliRedaGomaa01/connect" target="_blank">https://github.com/AliRedaGomaa01/connect</a></p>
+        <a href="https://aligh.net" class="underline" target="_blank">My Website Url</a>
+        <a href="https://github.com/AliRedaGomaa01/connect" class="underline" target="_blank">Github Url</a>
     </div>
 </x-guest-layout>

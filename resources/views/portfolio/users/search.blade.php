@@ -12,7 +12,7 @@
     $contentClasses = "p-10";
 @endphp
 <x-app-layout>
-    <div class="grid it-ce  p-10 ">
+    <x-container>
         {{-- Searching form --}}
         <div class="myShadow rounded-xl m-5 p-5 w-[90%] grid gap-5">
             <form class="grid gap-5">
@@ -27,7 +27,6 @@
             </form>
             <x-primary-button class="justify-self-center" onclick="usersSearchResultFn()">{{__('Search')}}</x-primary-button>
         </div>
-
         {{-- Result if exist --}}
         <div class="myShadow rounded-xl m-5 p-5 w-[90%] grid gap-5" style="display:none" id="hasUserResult">
             <h3>{{__('Name')}}</h3>
@@ -41,7 +40,7 @@
         <div class="myShadow rounded-xl m-5 p-5 w-[90%] grid gap-5" style="display:none" id="noUserResult">
             <div class="text-center">{{__('There is no results.')}}</div>
         </div>
-    </div>
+    </x-container>
 
     <script>
         var hideAll = () => {

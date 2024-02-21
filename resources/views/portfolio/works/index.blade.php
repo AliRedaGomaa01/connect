@@ -24,7 +24,7 @@
     @slot('nav2')
         <x-user-nav :user="$user"></x-user-nav>
     @endslot
-    <div class="grid it-ce  p-10 ">
+    <x-container>
         @if (isset($user) && $user->id == auth()->id() )
             <a href="{{route('works.create')}}" class="myShadow rounded-xl m-5 p-5 w-[90%] grid gap-5">
                 <x-primary-button class="justify-self-center">{{__('Add New')}}</x-primary-button>
@@ -61,6 +61,6 @@
                 <x-primary-button class="{{ $nextBtnCond ? 'hidden' : '' }}" > {{__('Next')}} </x-primary-button>
             </a>
         </div>
-    </div>
+    </x-container>
 
 </x-app-layout>

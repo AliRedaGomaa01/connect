@@ -26,14 +26,14 @@
         <script src="{{asset('/assets/js/jquery.js')}}"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased min-h-[100vh] h-screen w-[100vw] min-w-[900px] grid items-between gap-10 ">
+    <body class="font-sans antialiased min-h-[100vh] min-w-[100vw] grid items-between gap-10 leading-8">
         <!-- Header -->
         <header class="grid items-start">
             @include('layouts.partials.header')
         </header>
         <!-- Page Content -->
-        <main class="grid co-ce mx-auto w-[600px] lg:w-[70vh] m-5 rounded-xl ">
-            <div class="w-[500px] lg:w-[60vh]">
+        <main class="grid co-ce ">
+            <div class="grid it-ce max-w-[80vw] min-w-[300px] mx-5 vsm:mx-auto overflow-scroll my-hide-scrollbar p-5 rounded-xl ">
                 {{ $slot }}
             </div>
         </main>
