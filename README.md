@@ -1,6 +1,6 @@
 # Connect Project
 
-It is a project that I ( Ali Hussein ) made using ( laravel - blade - jquery - albine - axios - breeze ).
+It is a project that I ( Ali Hussein ) made using ( laravel - blade - jquery - alpine - axios - breeze ).
 
 It has been designed & developed and deployed by me.
 
