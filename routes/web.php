@@ -59,7 +59,7 @@ Route::middleware('lang')->group(function () {
     });
 });
     
-    /* Testing */
+    /* Testing && old */
     // Route::get('/t', function () {
     // })->name('test');
     // ****************************************************************************
