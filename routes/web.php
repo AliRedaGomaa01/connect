@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkController;
 use App\Models\Follow;
+use App\Models\User;
 use App\Models\Work;
 use Illuminate\Support\Facades\Route;
 
@@ -25,23 +26,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('lang')->group(function () {
 
     require __DIR__.'/auth.php';
-    /* Testing */
-    // Route::get('/t', function () {
 
-    // })->name('test');
-    // ****************************************************************************
-    // Route::get('/test', [UserController::class, 'index'])->name('test');
-    // ****************************************************************************
-    /* Show main routes*/
-    // Route::get('/r', function () {
-    //     return view('zz-unused.all-routes');
-    // })->name('routes');
-    // ****************************************************************************
-    // Route::get('/', function () {
-    //     return view('zz-unused.coming-soon');
-    // })->name('landing');
-    // ****************************************************************************
     Route::view('/', 'landing')->name('landing');
+
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->middleware(['auth', 'verified'])->name('dashboard');
@@ -63,12 +50,8 @@ Route::middleware('lang')->group(function () {
         });
         Route::resource('users', UserController::class);
         # works
-        // Route::controller(WorkController::class)->group(function () {
-        //     Route::get('users/{user:id}/works', 'userWorks')->name('users.works');
-        // });
         Route::resource('works', WorkController::class);
         # images
-        // Route::controller(ImageController::class)->group(function () {});
         Route::resource('images', ImageController::class);
         # follows
         Route::post('follows', FollowController::class)->name('follows');
@@ -76,3 +59,18 @@ Route::middleware('lang')->group(function () {
     });
 });
     
+    /* Testing */
+    // Route::get('/t', function () {
+    // })->name('test');
+    // ****************************************************************************
+    // Route::get('/test', [UserController::class, 'index'])->name('test');
+    // ****************************************************************************
+    /* Show main routes*/
+    // Route::get('/r', function () {
+    //     return view('zz-unused.all-routes');
+    // })->name('routes');
+    // ****************************************************************************
+    // Route::get('/', function () {
+    //     return view('zz-unused.coming-soon');
+    // })->name('landing');
+    // ****************************************************************************
