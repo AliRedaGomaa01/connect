@@ -78,9 +78,9 @@ Route::name('api.v1.')->middleware('lang')->prefix('v1')->group( function () {
         # images
         Route::resource('images', ImageController::class);
         # follows
-        Route::post('follows', FollowController::class)->name('follows');
+        Route::post('follows', [FollowController::class])->name('follows');
         # likes
-        Route::post('likes', LikeController::class)->name('likes');
+        Route::post('likes', [LikeController::class])->name('likes');
     });
     // end of prefix api/v1 
 });
