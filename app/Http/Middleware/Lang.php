@@ -15,13 +15,17 @@ class Lang
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if( isset($request->locale) && in_array($request->locale, ['ar','en'])) {
+        if ($request->hasHeader('X-Localization') && in_array($request->header('X-Localization'), ['ar','en'])) {
+            $locale = $request->header('X-Localization');
+        }
+        else if( isset($request->locale) && in_array($request->locale, ['ar','en'])) {
             $locale = $request->locale;
-            session()->put('locale', $locale);
         } else {
             $locale = session('locale') ?? app()->currentLocale();
         }
         app()->setLocale($locale);
+        session()->put('locale', $locale);
+        $request->headers->set('X-Localization', $locale);
         return $next($request);
     }
 }

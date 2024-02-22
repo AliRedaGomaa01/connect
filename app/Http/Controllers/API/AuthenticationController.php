@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\RegisterRequest;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -33,6 +34,7 @@ class AuthenticationController extends Controller
                 DB::beginTransaction();
                 $user = User::create($validated);
                 DB::commit();
+                event(new Registered($user));
                 $token = $user->createToken('authToken of '.$user->name)->plainTextToken;
                 $data = [
                     'status' => true,
@@ -63,9 +65,8 @@ class AuthenticationController extends Controller
                 throw new \Exception($errors);
             } else {
                 $validated = $validator->safe()->all();
-                $userQuery = User::where('email', $validated['email']); 
-                $userQuery->count() == 0 ? throw new \Exception('Invalid credentials') : $user = $userQuery->first();
-                Hash::check($validated['password'], $user->password) ? throw new \Exception('Invalid credentials') : null;
+                User::where('email', $validated['email'])->count() == 0 ? throw new \Exception('Invalid credentials') : $user = User::where('email', $validated['email'])->first();
+                !Hash::check($validated['password'], $user->password) ? throw new \Exception('Invalid credentials') : null;
                 $user->tokens()?->delete();
                 $token = $user->createToken('authToken of '.$user->name)->plainTextToken;
                 $data = [

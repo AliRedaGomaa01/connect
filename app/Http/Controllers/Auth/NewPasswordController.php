@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Traits\MultiResponse;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,12 +15,13 @@ use Illuminate\View\View;
 
 class NewPasswordController extends Controller
 {
+    use MultiResponse;
     /**
      * Display the password reset view.
      */
     public function create(Request $request): View
     {
-        return view('auth.reset-password', ['request' => $request]);
+        return $this->multiResponse( response()->json(['email' => $request->email,'token' => $request->route('token'),]), view('auth.reset-password', ['request' => $request]) );
     }
 
     /**
@@ -54,8 +56,7 @@ class NewPasswordController extends Controller
         // the application's home authenticated view. If there is an error we can
         // redirect them back to where they came from with their error message.
         return $status == Password::PASSWORD_RESET
-                    ? redirect()->route('login')->with('status', __($status))
-                    : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+                    ? ($this->multiResponse( response()->json(['status' => __($status)]) , redirect()->route('login')->with('status', __($status))))
+                    : ($this->multiResponse( response()->json(['email' => __($status)]) , back()->withInput($request->only('email'))->withErrors(['email' => __($status)]))) ;
     }
 }

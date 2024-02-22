@@ -1,15 +1,11 @@
 <?php
 
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkController;
-use App\Models\Follow;
-use App\Models\User;
-use App\Models\Work;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,7 +44,7 @@ Route::middleware('lang')->group(function () {
             Route::get('users/search', 'search')->name('users.search');
             Route::post('users/search-result', 'searchResult')->name('users.search.result');
         });
-        Route::resource('users', UserController::class);
+        Route::resource('users', UserController::class); 
         # works
         Route::resource('works', WorkController::class);
         # images

@@ -17,9 +17,11 @@ class ImageService
         return $image;
     }
 
-    public static function delete(string $path)
+    public static function delete(?string $path= 'not_set')
     {
-        return unlink(storage_path('app/public' . $path));
+        if (file_exists(storage_path('app/public' . $path))) {
+            return unlink(storage_path('app/public' . $path));
+        }
     }
 
 }

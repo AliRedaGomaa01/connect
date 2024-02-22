@@ -1,0 +1,1131 @@
+{
+	"info": {
+		"_postman_id": "33898192-1f42-41d0-8b67-cfed760ff028",
+		"name": "connect",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32425256"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Guest",
+					"item": [
+						{
+							"name": "register",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "*/*",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Ali Hussein",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "alyredagomaa@gmail.com",
+											"description": "must be unique",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "test1234",
+											"description": "min 8 letters & numbers",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "test1234",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/register",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "*/*",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "alyredagomaa@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "test1234",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "forgot-password",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "*/*",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "alyredagomaa@gmail.com",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/forgot-password",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"forgot-password"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "noauth"
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Authenticated",
+					"item": [
+						{
+							"name": "verify-email",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "*/*",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "alyredagomaa@gmail.com",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/email/verification-notification",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"email",
+										"verification-notification"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "logout",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "*/*",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{url}}/logout",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update-password",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "current_password",
+											"value": "test1234",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "test1234",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "test1234",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/password",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"password"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{url}}/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "profile",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Ali Hussein",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "alyredagomaa@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "bio",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "cv_link",
+									"value": "#test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "profile",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "test1234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "User Images",
+					"item": [
+						{
+							"name": "user-images",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/users/:id/images",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										":id",
+										"images"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User Works",
+					"item": [
+						{
+							"name": "user-works",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/users/:id/works",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										":id",
+										"works"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Search Users",
+					"item": [
+						{
+							"name": "search-user",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/users/search",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"search"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "search-user-results",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "alyredagomaa@gmail.com",
+											"description": "get the email from searching-list in search-user GET end point",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/users/search-result",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"search-result"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "all-users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/users/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show-user",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/users/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Following",
+			"item": [
+				{
+					"name": "toggle-follow",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "following_id",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "followed_id",
+									"value": "5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/follows?=5&=5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"follows"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "5"
+								},
+								{
+									"key": "",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "followed-by-users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/:id/followers/:status",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								":id",
+								"followers",
+								":status"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5"
+								},
+								{
+									"key": "status",
+									"value": "followedBy"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "is-following-users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/:id/followers/:status",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								":id",
+								"followers",
+								":status"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5"
+								},
+								{
+									"key": "status",
+									"value": "following"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Liking",
+			"item": [
+				{
+					"name": "toggle-like",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "likeable_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "likeable_type",
+									"value": "Work",
+									"description": "Image or Work",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/likes",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"likes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Works",
+			"item": [
+				{
+					"name": "followed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/works",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"works"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/works/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"works",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/works/create",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"works",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/works/:id/edit",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"works",
+								":id",
+								"edit"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Localization",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "category",
+									"value": "Book",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Ali Book",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "url",
+									"value": "{{url}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/works",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"works"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "category",
+									"value": "Book",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Ali Book",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "url",
+									"value": "{{url}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/works/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"works",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/works/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"works",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Images",
+			"item": [
+				{
+					"name": "followed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/images",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"images"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/images/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"images",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/images",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"images"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/images/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"images",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Localization",
+			"item": [
+				{
+					"name": "arabic",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Localization",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/test-locale",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"test-locale"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "english",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Localization",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/test-locale",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"test-locale"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "9|e33dSkCY7ESJoNowOyWjHx8nRX7yk2kAmHgJESSc6bf41d78",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "---",
+			"type": "string"
+		}
+	]
+}
