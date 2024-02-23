@@ -34,10 +34,10 @@
             {{-- follow info --}}
             <h3>{{__('Follows')}}</h3>
             <p class=' px-10 py-5'>
-                {{$show['following'] . ' ' }} <span  class="text-white bg-main p-2 rounded-lg font-[900]">{{ $followingCount }}</span>  {{ ' ' . $show['other users'] }} <br> <a class=' text-white bg-main p-2 rounded-lg  underline' href="{{route('follows',[ $user['id'] , 'following' ] ) }}" target="_blank"> {{ ' ' . $show['click'] }} </a>
+                {{$show['following'] . ' ' }} <span  class="text-white bg-main p-2 rounded-lg font-[900]">{{ $followingCount }}</span>  {{ ' ' . $show['other users'] }} <br> <a class=' text-white bg-main p-2 rounded-lg  underline' href="{{route('users.follows',[ $user['id'] , 'following' ] ) }}" target="_blank"> {{ ' ' . $show['click'] }} </a>
             </p>
             <p class=' px-10 py-5'>
-                {{$show['followed'] . ' ' }} <span id="followedCount" class="text-white bg-main p-2 rounded-lg font-[900]">{{ $followedByCount }}</span> {{ ' ' . $show['other users'] }} <br> <a class=' text-white bg-main p-2 rounded-lg underline' href="{{route('follows',[ $user['id'] , 'followed' ] ) }}" target="_blank"> {{ ' ' . $show['click'] }} </a>
+                {{$show['followed'] . ' ' }} <span id="followedCount" class="text-white bg-main p-2 rounded-lg font-[900]">{{ $followedByCount }}</span> {{ ' ' . $show['other users'] }} <br> <a class=' text-white bg-main p-2 rounded-lg underline' href="{{route('users.follows',[ $user['id'] , 'followed' ] ) }}" target="_blank"> {{ ' ' . $show['click'] }} </a>
             </p>
             {{-- follow btn --}}
             <div id="followBtnDiv" class="grid">

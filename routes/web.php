@@ -39,7 +39,7 @@ Route::middleware('lang')->group(function () {
         # users
         Route::get('users/{id}/images',[ImageController::class, 'index'])->name('users.images');
         Route::get('users/{id}/works',[WorkController::class, 'index'])->name('users.works');
-        Route::get('users/{id}/followers/{status?}',[UserController::class, 'index'])->name('follows');  // status ['following' , 'followed']
+        Route::get('users/{id}/followers/{status?}',[UserController::class, 'index'])->name('users.follows');  // status ['following' , 'followed']
         Route::controller(UserController::class)->group(function () {
             Route::get('users/search', 'search')->name('users.search');
             Route::post('users/search-result', 'searchResult')->name('users.search.result');
