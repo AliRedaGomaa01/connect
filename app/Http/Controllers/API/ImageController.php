@@ -97,6 +97,9 @@ class ImageController extends Controller
      */
     public function destroy(image $image)
     {
+        if ( auth()->user()->can('isOwner', $image->user_id) == false ) {
+            return response()->json([], 403);
+        }
         ImageService::delete($image->path ?? 'not_set');
         $image->delete();
         $data= [

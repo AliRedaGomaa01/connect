@@ -73,6 +73,9 @@ class WorkController extends Controller
      */
     public function edit(Work $work)
     {
+        if ( auth()->user()->can('isOwner', $work->user_id) == false ) {
+            return abort(403);
+        }
         $workTypes = WorkTypesEnum::toArray(); 
         return view('portfolio.works.edit', compact('work','workTypes'));
     }
@@ -82,6 +85,9 @@ class WorkController extends Controller
      */
     public function update(WorkRequest $request, Work $work)
     {
+        if ( auth()->user()->can('isOwner', $work->user_id) == false ) {
+            return abort(403);
+        }
         $validated = $request->validated();
         $work->update($validated);
         return redirect()->route('works.index',['id' => auth()->id()])->with('success', __("Updated Successfully"));
@@ -93,6 +99,9 @@ class WorkController extends Controller
      */
     public function destroy(Work $work)
     {
+        if ( auth()->user()->can('isOwner', $work->user_id) == false ) {
+            return abort(403);
+        }
         $work->delete();
         return redirect()->route('works.index',['id' => auth()->id()])->with('success', __("Deleted Successfully"));
     }

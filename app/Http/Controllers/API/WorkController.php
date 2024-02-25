@@ -110,6 +110,9 @@ class WorkController extends Controller
      */
     public function edit(Work $work)
     {
+        if ( auth()->user()->can('isOwner', $work->user_id) == false ) {
+            return response()->json([], 403);
+        }
         $workTypes = WorkTypesEnum::toArray(); 
         // return response
         $data= [
@@ -124,6 +127,9 @@ class WorkController extends Controller
      */
     public function update(Request $request, Work $work)
     {
+        if ( auth()->user()->can('isOwner', $work->user_id) == false ) {
+            return response()->json([], 403);
+        }
         $rules = [
             'category' => ['required','string','max:255'],
             'title' => ['required','string','max:255'],
@@ -154,6 +160,9 @@ class WorkController extends Controller
      */
     public function destroy(Work $work)
     {
+        if ( auth()->user()->can('isOwner', $work->user_id) == false ) {
+            return response()->json([], 403);
+        }
         $work->delete();
         // return response
         $data= [
