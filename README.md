@@ -4,6 +4,14 @@ It is a project that I ( Ali Hussein ) made using ( laravel - blade - jquery - a
 
 It has been designed & developed and deployed by me.
 
+Connect is similar to facebook where you can login, post, like posts, and follow users but it focuses on time saving and productivity.
+In Connect, You have your own profile or portfolio with your achievments that benifit the society.
+You can post work or achievment like ( e-book - blog - course - article ). 
+Also you can publish your photos to let people know more about you.
+You can follow others and the powerfull of any profile is from the number of its followers.
+And best works is the works with the top likes number.
+It encourages people to benifit their society and helps others to save their time in a good manner.
+
 You can visit my website to get all info about me.
 
 Don't hesitate to contact me anytime.
