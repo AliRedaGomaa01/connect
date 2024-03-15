@@ -4,45 +4,56 @@
 
 
 @layer base {
-    h3 ,label {
+
+    h3,
+    label {
         @apply text-xl font-bold text-main
     }
-    input[name] , textarea[name] , select[name] {
+
+    input[name], textarea[name], select[name] {
         @apply border-2 border-main outline-main rounded-lg
     }
 }
+
 @layer components {
     .it-ce {
         @apply justify-items-center items-center
     }
+
     .co-ce {
         @apply justify-center content-center
     }
+
     .active {
         @apply px-6 py-3 bg-main rounded-xl text-white
     }
+
     .myShadow {
         @apply shadow-[3px_3px_6px_6px_rgb(0,0,0,0.1),-3px_-3px_6px_6px_rgb(0,0,0,0.1)]
     }
+
     .myBottomShadow {
         @apply shadow-[0px_3px_6px_6px_rgb(0,0,0,0.1)]
     }
+
     .myTopShadow {
         @apply shadow-[0px_-3px_6px_6px_rgb(0,0,0,0.1)]
     }
 
 }
-    
-    @layer utilities {
-        /* Hide scrollbar for Chrome, Safari and Opera */
-        .my-hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        /* Hide scrollbar for IE, Edge and Firefox */
-        .my-hide-scrollbar {
-            -ms-overflow-style: none;
-            /* IE and Edge */
-            scrollbar-width: none;
-            /* Firefox */
-        }
+
+@layer utilities {
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .my-hide-scrollbar::-webkit-scrollbar {
+        display: none;
     }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .my-hide-scrollbar {
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+    }
+}
