@@ -20,8 +20,8 @@ If you downloaded the project don't forget ( making .env file with your custom c
 
 The postman collection is attached with the project files here on github.
 
-<p align="center"><a href="https://blade-connect.aligh.net" target="_blank">Connect Project Web App URL</a></p>
+<p align="center"><a href="https://blade-connect.aly-h.com" target="_blank">Connect Project Web App URL</a></p>
 
 <p align="center"><a href="https://github.com/AliRedaGomaa01/connect" target="_blank">Connect Project Github URL</a></p>
 
-<p align="center"><a href="https://aligh.net" target="_blank">My Website URL</a></p>
+<p align="center"><a href="https://aly-h.com" target="_blank">My Website URL</a></p>

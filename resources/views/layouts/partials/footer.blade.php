@@ -2,10 +2,10 @@
 
 @php
     $footerEn = [
-        'footer' => 'Designed & Developed & Deployed by <a href="https://aligh.net" class="underline" target="_blank"> Ali Hussein</a> © '.date('Y') ,
+        'footer' => 'Designed & Developed & Deployed by <a href="https://aly-h.com" class="underline" target="_blank"> Ali Hussein</a> © '.date('Y') ,
     ];
     $footerAr = [
-        'footer' => 'تم تصميمه وتطويره ونشره بواسطة   <a href="https://aligh.net" class="underline" target="_blank"> علي حسين</a> © '.date('Y') ,
+        'footer' => 'تم تصميمه وتطويره ونشره بواسطة   <a href="https://aly-h.com" class="underline" target="_blank"> علي حسين</a> © '.date('Y') ,
     ];
     $footer = app()->isLocale('ar') ?  $footerAr : $footerEn;
 @endphp
