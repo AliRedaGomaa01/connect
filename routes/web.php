@@ -19,10 +19,10 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::get('artisan-storage-link' , function () {
-  \Illuminate\Support\Facades\Artisan::call('storage:link');
-  return "done";
-});
+// Route::get('artisan-storage-link' , function () {
+//   \Illuminate\Support\Facades\Artisan::call('storage:link');
+//   return "done";
+// });
 
 Route::middleware('lang')->group(function () {
 
