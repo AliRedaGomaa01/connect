@@ -39,7 +39,7 @@
         <p class="{{$contentClasses}}">{{$landing['body2']}}</p>
         <p class="{{$contentClasses}}">{{$landing['body3']}}</p>
         <p class="{{$contentClasses}}">{{$landing['body4']}}</p>
-        <a href="https://aly-h.com" class="underline" target="_blank">{{$isEn?'My Website Url':'رابط موقعي الشخصي'}}</a>
+        <a href="https://alyhsn.com" class="underline" target="_blank">{{$isEn?'My Website Url':'رابط موقعي الشخصي'}}</a>
         <a href="https://github.com/AliRedaGomaa01/connect" class="underline" target="_blank">{{$isEn ? 'Github Url' : "رابط Github"}}</a>
     </div>
 </x-guest-layout>
