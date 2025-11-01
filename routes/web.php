@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\FollowController;
-use App\Http\Controllers\ImageController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LikeController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\FollowController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('artisan-storage-link' , function () {
+  \Illuminate\Support\Facades\Artisan::call('storage:link');
+  return "done";
+});
 
 Route::middleware('lang')->group(function () {
 
